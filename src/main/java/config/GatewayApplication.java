@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 //@SpringBootApplication
 @Configuration
 @Import({
-        SecurityConfig.class,
         WebConfig.class
 })
 @EnableAutoConfiguration
