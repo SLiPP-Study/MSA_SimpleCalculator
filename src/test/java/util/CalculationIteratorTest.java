@@ -15,7 +15,7 @@ public class CalculationIteratorTest {
     @Test
     public void first_메서드를_이용한_Operation객체생성() {
         CalculationIterator analyzer = new CalculationIterator(new PostFixConverter("2+3"));
-        Calculation calculation = analyzer.first();
+        Calculation calculation = analyzer.moveToFirst();
 
         assertEquals(2, calculation.getOperand1());
         assertEquals(3, calculation.getOperand2());
@@ -26,7 +26,7 @@ public class CalculationIteratorTest {
     public void next_메서드를_이용한_Operation객체생성() {
         CalculationIterator iterator = new CalculationIterator(new PostFixConverter("2*(2+3)"));
 
-        Calculation first = iterator.first();
+        Calculation first = iterator.moveToFirst();
         assertTrue(iterator.hasNext());
 
         assertEquals(2, first.getOperand1());

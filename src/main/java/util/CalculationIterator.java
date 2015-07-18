@@ -3,7 +3,6 @@ package util;
 import dto.Calculation;
 import org.springframework.util.Assert;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -22,17 +21,20 @@ public class CalculationIterator {
         Assert.notNull(postFixConverter);
 
         this.originCalculationQueue = postFixConverter.getQueue();
+        init();
+    }
 
+    private void init() {
+        calculationQueue = new LinkedList<Object>(originCalculationQueue);
+        calculationStack = new Stack<Object>();
     }
 
     public boolean hasNext() {
         return this.calculationStack.empty() == false;
     }
 
-    public Calculation first() {
-        calculationQueue = new LinkedList<Object>(originCalculationQueue);
-        calculationStack = new Stack<Object>();
-
+    public Calculation moveToFirst() {
+        init();
 
         return getCalculation();
     }
