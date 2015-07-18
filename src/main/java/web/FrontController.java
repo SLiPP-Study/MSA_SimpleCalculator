@@ -19,6 +19,7 @@ public class FrontController {
     public @ResponseBody String httpRequest(String requestCalculation) {
         log.info("Request Calculation = {}", requestCalculation);
 
+
         PostFixConverter converter = new PostFixConverter(requestCalculation);
 
         return "Index Page";
