@@ -8,6 +8,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 /**
  * Created by yoon on 15. 7. 17..
@@ -22,6 +23,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
         // TODO Authentication & Authorization Check
         if (authCookie == null || !WebConfig.TEST_COOKIE_VALUE.equalsIgnoreCase(authCookie)) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
             return false;
         }
 
