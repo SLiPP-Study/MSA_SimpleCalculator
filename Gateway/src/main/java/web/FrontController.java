@@ -37,7 +37,7 @@ public class FrontController {
             int operationResult;
 
             HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            headers.setContentType(MediaType.APPLICATION_JSON);
 
             Calculation calculation = iterator.moveToFirst();
             while (calculation != null) {

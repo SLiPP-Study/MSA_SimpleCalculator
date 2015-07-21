@@ -14,7 +14,7 @@ public enum Operator {
     ROUND_BRACKET_END(")", null, 1),
     DIVISION("/", "url", 5),
     MULTIPLICATION("*", "url", 5),
-    ADDITION("+", "url", 10),
+    ADDITION("+", "http://127.0.0.1:9001", 10),
     SUBTRACTION("-", "url", 10);
 
     private final String stringValue;
