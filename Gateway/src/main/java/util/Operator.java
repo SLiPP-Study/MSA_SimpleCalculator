@@ -15,7 +15,7 @@ public enum Operator {
     DIVISION("/", "url", 5),
     MULTIPLICATION("*", "url", 5),
     ADDITION("+", "http://127.0.0.1:9001", 10),
-    SUBTRACTION("-", "url", 10);
+    SUBTRACTION("-", "http://127.0.0.1:9002", 10);
 
     private final String stringValue;
     private final String serverUrl;

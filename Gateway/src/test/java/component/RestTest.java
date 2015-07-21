@@ -24,17 +24,27 @@ public class RestTest {
     }
 
     @Test
-    public void AdditionServer() {
-        //request
-        HttpEntity<String> requestEntity = new HttpEntity<String>(getParameter(1, 3), headers);
-
+     public void additionServer() {
         //response
-        ResponseEntity<String> response = restTemplate.postForEntity(Operator.ADDITION.getServerUrl(), requestEntity, String.class);
+        ResponseEntity<String> response = postForEntity(Operator.ADDITION, createJsonParameter(1, 3));
 
         assertEquals(4, Integer.parseInt(response.getBody().toString()));
     }
 
-    private String getParameter(int operand1, int operand2) {
-        return "{\"operand1\":\""+operand1 + "\", \"operand2\": \""+operand2+"\"}";
+    @Test
+    public void subtractionServer() {
+        //response
+        ResponseEntity<String> response = postForEntity(Operator.SUBTRACTION, createJsonParameter(4, 1));
+
+        assertEquals(3, Integer.parseInt(response.getBody().toString()));
+    }
+
+    private String createJsonParameter(int operand1, int operand2) {
+        return "{\"operand1\":"+operand1 + ", \"operand2\": "+operand2+"}";
+    }
+
+    private ResponseEntity<String> postForEntity(Operator operator, String jsonParameter) {
+        HttpEntity<String> requestEntity = new HttpEntity<String>(jsonParameter, headers);
+        return restTemplate.postForEntity(operator.getServerUrl(), requestEntity, String.class);
     }
 }

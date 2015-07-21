@@ -26,4 +26,12 @@ public class Addition {
     public int getOperationResult() {
         return this.operand1 +this.operand2;
     }
+
+    @Override
+    public String toString() {
+        return "Addition{" +
+                "operand1=" + operand1 +
+                ", operand2=" + operand2 +
+                '}';
+    }
 }
