@@ -47,6 +47,14 @@ public class RestTest {
         assertEquals(6, Integer.parseInt(response.getBody().toString()));
     }
 
+    @Test
+    public void divisionServer() {
+        //response
+        ResponseEntity<String> response = postForEntity(Operator.DIVISION, createJsonParameter(10, 2));
+
+        assertEquals(5, Integer.parseInt(response.getBody().toString()));
+    }
+
     private String createJsonParameter(int operand1, int operand2) {
         return "{\"operand1\":"+operand1 + ", \"operand2\": "+operand2+"}";
     }

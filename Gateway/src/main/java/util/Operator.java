@@ -12,7 +12,7 @@ import java.util.List;
 public enum Operator {
     ROUND_BRACKET_START("(", null, 1),
     ROUND_BRACKET_END(")", null, 1),
-    DIVISION("/", "url", 5),
+    DIVISION("/", "http://127.0.0.1:9005", 5),
     MULTIPLICATION("*", "http://127.0.0.1:9004", 5),
     ADDITION("+", "http://127.0.0.1:9001", 10),
     SUBTRACTION("-", "http://127.0.0.1:9002", 10);
