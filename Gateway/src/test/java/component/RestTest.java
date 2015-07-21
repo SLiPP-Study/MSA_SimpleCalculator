@@ -39,6 +39,14 @@ public class RestTest {
         assertEquals(3, Integer.parseInt(response.getBody().toString()));
     }
 
+    @Test
+    public void multiplicationServer() {
+        //response
+        ResponseEntity<String> response = postForEntity(Operator.MULTIPLICATION, createJsonParameter(3, 2));
+
+        assertEquals(6, Integer.parseInt(response.getBody().toString()));
+    }
+
     private String createJsonParameter(int operand1, int operand2) {
         return "{\"operand1\":"+operand1 + ", \"operand2\": "+operand2+"}";
     }
