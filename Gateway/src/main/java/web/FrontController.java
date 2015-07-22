@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,42 +35,43 @@ public class FrontController {
         log.info("Request Calculation = {}", requestCalculation);
 
         try {
-            CalculationIterator iterator = new CalculationIterator(new PostFixConverter(requestCalculation));
-            int operationResult;
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-
-            Calculation calculation = iterator.moveToFirst();
-            while (calculation != null) {
-
-                //request
-                HttpEntity<Calculation> requestEntity = new HttpEntity<Calculation>(calculation, headers);
-
-                //response
-                ResponseEntity<String> response = restTemplate.exchange(calculation.getOperator().getServerUrl(), HttpMethod.POST, requestEntity, String.class);
-                //HttpHeaders responseHeaders = response.getHeaders();
-
-                operationResult = Integer.parseInt(response.getBody().toString());
-
-                if (iterator.hasNext())
-                    calculation = iterator.nextWithPreviousResult(operationResult);
-                else {
-                    return ""+operationResult;
-                }
-            }
+            Assert.notNull(requestCalculation);
+            return executeCalculate(requestCalculation).toString();
 
         } catch (Exception e) {
             e.printStackTrace();
             log.error("Error : {}", e.getMessage());
-            return e.getClass().getName() + " : " +e.getMessage();
-        }
 
-        return "Error";
+            return e.getClass().getCanonicalName() + " : " + e.getMessage();
+        }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
-        return "index";
+    private Integer executeCalculate(String requestCalculation) {
+        CalculationIterator iterator = new CalculationIterator(new PostFixConverter(requestCalculation));
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        Calculation calculation = iterator.moveToFirst();
+        int operationResult;
+        while (calculation != null) {
+
+            //request
+            HttpEntity<Calculation> requestEntity = new HttpEntity<Calculation>(calculation, headers);
+
+            //response
+            ResponseEntity<String> response = restTemplate.exchange(calculation.getOperator().getServerUrl(), HttpMethod.POST, requestEntity, String.class);
+            //HttpHeaders responseHeaders = response.getHeaders();
+
+            operationResult = Integer.parseInt(response.getBody().toString());
+
+            if (iterator.hasNext())
+                calculation = iterator.nextWithPreviousResult(operationResult);
+            else {
+                return operationResult;
+            }
+        }
+
+        throw new IllegalArgumentException();
     }
 }

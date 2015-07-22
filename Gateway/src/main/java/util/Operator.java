@@ -22,7 +22,7 @@ public enum Operator {
     private final int priority;
 
     static {
-        
+
         //TODO Update data from Physical Database
         Operator.ADDITION.setServerUrl("http://127.0.0.1:9001");
         Operator.SUBTRACTION.setServerUrl("http://127.0.0.1:9002");
