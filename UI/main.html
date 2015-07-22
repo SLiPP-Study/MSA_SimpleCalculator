@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<header>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</header>
+<div id="calculator">
+	<div id="result">0</div>
+	<div id="keys">
+		<div class="operations" onclick="tools('c');"><p>c</p></div><div class="operations" id="left_bracket" onclick="operations('left_bracket');"><p>(</p></div><div class="operations" id="right_bracket" onclick="operations('right_bracket');"><p>)</p></div><div class="operations" id="under" onclick="operations('under');"><p>/</p></div>
+		<div class="numbers" onclick="numbers(7);"><p>7</p></div><div class="numbers" onclick="numbers(8);"><p>8</p></div><div class="numbers" onclick="numbers(9);"><p>9</p></div><div class="operations" id="times" onclick="operations('times');"><p>x</p></div>
+		<div class="numbers" onclick="numbers(4);"><p>4</p></div><div class="numbers" onclick="numbers(5);"><p>5</p></div><div class="numbers" onclick="numbers(6);"><p>6</p></div><div class="operations" id="minus" onclick="operations('minus');"><p>-</p></div>
+		<div class="numbers" onclick="numbers(1);"><p>1</p></div><div class="numbers" onclick="numbers(2);"><p>2</p></div><div class="numbers" onclick="numbers(3);"><p>3</p></div><div class="operations" id="plus" onclick="operations('plus');"><p>+</p></div>  
+		<div class="numbers" id="number0" onclick="numbers(0);"><p>0</p></div><div class="tools" onclick="tools('point');"><p>.</p></div><div class="operations" onclick="operations('equal');"><p>=</p></div>
+	</div>
+</div>
+<script src="jquery-2.1.4.min.js"></script>
+<script src="main.js"></script>
+</html>

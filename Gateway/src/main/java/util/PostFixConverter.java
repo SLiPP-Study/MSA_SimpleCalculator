@@ -1,9 +1,6 @@
 package util;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 import static util.Operator.ROUND_BRACKET_END;
 import static util.Operator.ROUND_BRACKET_START;
@@ -16,7 +13,9 @@ public class PostFixConverter {
     Queue<Object> resultQueue = new LinkedList<Object>();
 
     public PostFixConverter(String requestCalculation) {
-        makeResultQueue(requestCalculation);
+        //%2F = /, %28 = (, %29 = )
+        String trimedText = requestCalculation.replaceAll(" ", "").replaceAll("\\n", "").replace("=", "").replaceAll("%2F", "/").replaceAll("%28", "(").replaceAll("%29", ")");
+        makeResultQueue(trimedText);
     }
 
     public final Queue<Object> getQueue() {
@@ -43,7 +42,14 @@ public class PostFixConverter {
         Stack<Operator> stack = new Stack<Operator>();
         List<String> operandList = Operator.valuesOfString();
 
-        for (String letter : requestCalculation.split("")) {
+        String delimiters = null;
+        for (Operator operator : Operator.values()) {
+            delimiters += operator.getStringValue();
+        }
+
+        StringTokenizer tokenizer = new StringTokenizer(requestCalculation, delimiters, true);
+        while(tokenizer.hasMoreTokens()) {
+            String letter = tokenizer.nextToken();
 
             //is Operator
             if (operandList.contains(letter)) {

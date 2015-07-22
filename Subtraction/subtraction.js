@@ -21,5 +21,7 @@ http.createServer(app).listen(PORT, function() {
 
 app.post('/', function(request, response) {
 	console.log(request.body);
-	response.send((request.body.operand1 - request.body.operand2) + "") ;
+	var result = request.body.operand1 - request.body.operand2;
+	console.log("result : ", result);
+	response.send(result + "") ;
 });

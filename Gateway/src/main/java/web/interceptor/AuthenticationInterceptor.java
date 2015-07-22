@@ -18,14 +18,16 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     private final Logger log = LoggerFactory.getLogger(AuthenticationInterceptor.class);
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+        /*
         String authCookie = getAuthCookie(request);
+
 
         // TODO Authentication & Authorization Check
         if (authCookie == null || !WebConfig.TEST_COOKIE_VALUE.equalsIgnoreCase(authCookie)) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN);
             return false;
         }
+        */
 
         return true;
     }

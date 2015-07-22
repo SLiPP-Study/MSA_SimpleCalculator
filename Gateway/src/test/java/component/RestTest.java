@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.StringTokenizer;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -62,5 +64,16 @@ public class RestTest {
     private ResponseEntity<String> postForEntity(Operator operator, String jsonParameter) {
         HttpEntity<String> requestEntity = new HttpEntity<String>(jsonParameter, headers);
         return restTemplate.postForEntity(operator.getServerUrl(), requestEntity, String.class);
+    }
+
+    @Test
+    public void split() {
+        String text = "10+20-30*40/50";
+        StringTokenizer tokenizer = new StringTokenizer(text, "+-*/", true);
+        while(tokenizer.hasMoreTokens())
+            System.out.println(tokenizer.nextToken());
+        //for (String t : text.split(("(?=\\b[\\+\\-\\*/])"))) {
+        //    System.out.println(t);
+        //}
     }
 }

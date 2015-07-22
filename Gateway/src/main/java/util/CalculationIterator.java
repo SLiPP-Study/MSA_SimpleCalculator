@@ -30,7 +30,7 @@ public class CalculationIterator {
     }
 
     public boolean hasNext() {
-        return this.calculationStack.empty() == false;
+        return this.calculationQueue.isEmpty() == false;
     }
 
     public Calculation moveToFirst() {

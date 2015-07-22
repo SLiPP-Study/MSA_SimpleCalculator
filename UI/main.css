@@ -1,0 +1,90 @@
+html, body {
+    width: 100%;
+}
+
+html, body, div {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Helvetica Neue";
+    background: url(http://www.hdwallpapers.in/walls/ios_7_galaxy-wide.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#calculator {
+    width: 240px;
+    margin: 0px auto 0;
+}
+
+.operations, .numbers, .tools {
+    display: inline-block;
+    height: 55px;
+    width: 60px;
+    text-align: center;
+    color: #fff;
+    font-weight: 100;
+    font-size: 1.1rem;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    vertical-align:middle;
+}
+
+.numbers, .tools {
+    background: #999;
+}
+
+.numbers:active, .tools:active {
+    background: #ccc;
+}
+
+.operations {
+    background: orange;
+}
+
+.operations:active, .active {
+    background: #DF7221;
+}
+
+#number0 {
+    width: 120px;
+}
+
+#result {
+    color: #fff;
+    font-weight: 100;
+    max-width: 238px;
+    font-size: 3rem;
+    padding: 5px 1px;
+    text-align: right;
+    margin: 0;
+}
+
+div:nth-child(1) {
+    border-radius: 5px 0 0 0;
+}
+
+div:nth-child(4) {
+    border-radius: 0 5px 0 0;
+}
+
+div:nth-child(17) {
+    border-radius: 0 0 0 5px;
+}
+
+div:nth-child(19) {
+    border-radius: 0 0 5px 0;
+}
+
+p {
+    font-weight: bold;
+    
+}

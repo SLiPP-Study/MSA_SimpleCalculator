@@ -10,7 +10,10 @@ import org.springframework.context.annotation.Import;
 @Import({
         WebConfig.class
 })
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = {
+        org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class,
+        org.springframework.boot.actuate.autoconfigure.ManagementSecurityAutoConfiguration.class
+})
 public class GatewayApplication {
 
     public static void main(String[] args) {

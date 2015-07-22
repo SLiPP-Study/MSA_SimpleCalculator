@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,8 +29,8 @@ public class FrontController {
     @Autowired
     Gson gson;
 
-    @RequestMapping(value = "/calculation", method = RequestMethod.POST)
-    public @ResponseBody String httpRequest(String requestCalculation) {
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public @ResponseBody String httpRequest(@RequestBody String requestCalculation) {
         log.info("Request Calculation = {}", requestCalculation);
 
         try {
@@ -61,7 +62,7 @@ public class FrontController {
         } catch (Exception e) {
             e.printStackTrace();
             log.error("Error : {}", e.getMessage());
-            return e.getMessage();
+            return e.getClass().getName() + " : " +e.getMessage();
         }
 
         return "Error";
