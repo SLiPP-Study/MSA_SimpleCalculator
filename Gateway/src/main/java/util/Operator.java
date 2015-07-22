@@ -10,23 +10,28 @@ import java.util.List;
  * Created by yoon on 15. 7. 18..
  */
 public enum Operator {
-    ROUND_BRACKET_START("(", null, 1),
-    ROUND_BRACKET_END(")", null, 1),
-    DIVISION("/", "http://127.0.0.1:9005", 5),
-    MULTIPLICATION("*", "http://127.0.0.1:9004", 5),
-    ADDITION("+", "http://127.0.0.1:9001", 10),
-    SUBTRACTION("-", "http://127.0.0.1:9002", 10);
+    ROUND_BRACKET_START("(", 1),
+    ROUND_BRACKET_END(")", 1),
+    DIVISION("/", 5),
+    MULTIPLICATION("*", 5),
+    ADDITION("+", 10),
+    SUBTRACTION("-", 10);
 
     private final String stringValue;
-    private final String serverUrl;
+    private String serverUrl;
     private final int priority;
 
     static {
-        //TODO Load ServerURL From DB
+        
+        //TODO Update data from Physical Database
+        Operator.ADDITION.setServerUrl("http://127.0.0.1:9001");
+        Operator.SUBTRACTION.setServerUrl("http://127.0.0.1:9002");
+        Operator.MULTIPLICATION.setServerUrl("http://127.0.0.1:9003");
+        Operator.DIVISION.setServerUrl("http://127.0.0.1:9004");
     }
 
 
-    Operator(String stringValue, String serverUrl, int priority) {
+    Operator(String stringValue, int priority) {
         this.stringValue = stringValue;
         this.serverUrl = serverUrl;
         this.priority = priority;
@@ -55,6 +60,10 @@ public enum Operator {
         }
 
         return null;
+    }
+
+    private final void setServerUrl(String serverUrl) {
+        this.serverUrl = serverUrl;
     }
 
     public static List<String> valuesOfString() {
